@@ -1,10 +1,101 @@
 import DataTable from "./components/DataTable";
+import Header from "./components/Header";
 interface DataRow {
   [key: string]: any;
 }
-
+const rows: DataRow[] = [
+  {
+    Timestamp: "aohn",
+    PurchaseId: "123",
+    Mail: "cohn.doe@example.com",
+    Name: 1,
+    Source: "Admin",
+    Status: "Failed",
+    Select: "Select",
+  },
+  {
+    Timestamp: "aohn",
+    PurchaseId: "11245",
+    Mail: "gohn.doe@example.com",
+    Name: 1,
+    Source: "Admin",
+    Status: "Pending",
+    Select: "Select",
+  },
+  {
+    Timestamp: "bohn",
+    PurchaseId: "4356",
+    Mail: "lohn.doe@example.com",
+    Name: 1,
+    Source: "Admin",
+    Status: "Paid",
+    Select: "Select",
+  },
+  {
+    Timestamp: "aohn",
+    PurchaseId: "998947",
+    Mail: "john.doe@example.com",
+    Name: 1,
+    Source: "Admin",
+    Status: "Pending",
+    Select: "Select",
+  },
+  {
+    Timestamp: "aohn",
+    PurchaseId: "43245",
+    Mail: "john.doe@example.com",
+    Name: 1,
+    Source: "Admin",
+    Status: "Pending",
+    Select: "Select",
+  },
+  {
+    Timestamp: "aohn",
+    PurchaseId: "11111",
+    Mail: "john.doe@example.com",
+    Name: 1,
+    Source: "Admin",
+    Status: "Pending",
+    Select: "Select",
+  },
+  {
+    Timestamp: "aohn",
+    PurchaseId: "87464",
+    Mail: "john.doe@example.com",
+    Name: 1,
+    Source: "Admin",
+    Status: "Paid",
+    Select: "Select",
+  },
+  {
+    Timestamp: "aohn",
+    PurchaseId: "34213",
+    Mail: "john.doe@example.com",
+    Name: 1,
+    Source: "Admin",
+    Status: "Paid",
+    Select: "Select",
+  },
+  {
+    Timestamp: "aohn",
+    PurchaseId: "22346",
+    Mail: "john.doe@example.com",
+    Name: 1,
+    Source: "Admin",
+    Status: "Paid",
+    Select: "Select",
+  },
+  {
+    Timestamp: "aohn",
+    PurchaseId: "4533455",
+    Mail: "john.doe@example.com",
+    Name: 1,
+    Source: "Admin",
+    Status: "Pending",
+    Select: "Select",
+  },
+];
 const page: React.FC = () => {
-  // const rows: DataRow[] = [
   //   {
   //     cells: [
   //       "11:20",
@@ -72,101 +163,10 @@ const page: React.FC = () => {
   //     ],
   //   },
   // ];
-  const rows: DataRow[] = [
-    {
-      Timestamp: "aohn",
-      PurchaseId: "Doe",
-      Mail: "cohn.doe@example.com",
-      Name: 1,
-      Source: "Admin",
-      Status: "",
-      Select: "",
-    },
-    {
-      Timestamp: "aohn",
-      PurchaseId: "Doe",
-      Mail: "gohn.doe@example.com",
-      Name: 1,
-      Source: "Admin",
-      Status: "",
-      Select: "",
-    },
-    {
-      Timestamp: "bohn",
-      PurchaseId: "Doe",
-      Mail: "lohn.doe@example.com",
-      Name: 1,
-      Source: "Admin",
-      Status: "",
-      Select: "",
-    },
-    {
-      Timestamp: "aohn",
-      PurchaseId: "Doe",
-      Mail: "john.doe@example.com",
-      Name: 1,
-      Source: "Admin",
-      Status: "",
-      Select: "",
-    },
-    {
-      Timestamp: "aohn",
-      PurchaseId: "Doe",
-      Mail: "john.doe@example.com",
-      Name: 1,
-      Source: "Admin",
-      Status: "",
-      Select: "",
-    },
-    {
-      Timestamp: "aohn",
-      PurchaseId: "Doe",
-      Mail: "john.doe@example.com",
-      Name: 1,
-      Source: "Admin",
-      Status: "",
-      Select: "",
-    },
-    {
-      Timestamp: "aohn",
-      PurchaseId: "Doe",
-      Mail: "john.doe@example.com",
-      Name: 1,
-      Source: "Admin",
-      Status: "",
-      Select: "",
-    },
-    {
-      Timestamp: "aohn",
-      PurchaseId: "Doe",
-      Mail: "john.doe@example.com",
-      Name: 1,
-      Source: "Admin",
-      Status: "",
-      Select: "",
-    },
-    {
-      Timestamp: "aohn",
-      PurchaseId: "Doe",
-      Mail: "john.doe@example.com",
-      Name: 1,
-      Source: "Admin",
-      Status: "",
-      Select: "",
-    },
-    {
-      Timestamp: "aohn",
-      PurchaseId: "Doe",
-      Mail: "john.doe@example.com",
-      Name: 1,
-      Source: "Admin",
-      Status: "",
-      Select: "",
-    },
-  ];
+
   return (
     <div>
-      <h1>Custom Data Table</h1>
+      <Header />
       <DataTable
         headers={[
           "Timestamp",

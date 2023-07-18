@@ -21,6 +21,7 @@ const DataTable: React.FC<DataTableProps> = ({
   const [sortColumn, setSortColumn] = useState<number | null>(null);
   const [sortAscending, setSortAscending] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const itemsPerPage = 5;
 
   const handleHeaderClick = (index: number) => {
@@ -31,6 +32,22 @@ const DataTable: React.FC<DataTableProps> = ({
         setSortColumn(index);
         setSortAscending(true);
       }
+    }
+  };
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+    setCurrentPage(1); // Reset current page when search query changes
+  };
+  const getStatusBadgeColor = (status: string) => {
+    switch (status) {
+      case "Failed":
+        return styles.statusBadgeRed;
+      case "Paid":
+        return styles.statusBadgeGreen;
+      case "Pending":
+        return styles.statusBadgeYellow;
+      default:
+        return "";
     }
   };
 
@@ -48,12 +65,22 @@ const DataTable: React.FC<DataTableProps> = ({
       }
     });
   }
+  const filteredData = searchQuery
+    ? sortedData.filter((row) =>
+        String(row["PurchaseId"])
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase())
+      )
+    : sortedData;
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
+  // const paginatedData = pagination
+  //   ? sortedData.slice(startIndex, endIndex)
+  //   : sortedData;
   const paginatedData = pagination
-    ? sortedData.slice(startIndex, endIndex)
-    : sortedData;
+    ? filteredData.slice(startIndex, endIndex)
+    : filteredData;
 
   const handlePreviousPage = () => {
     setCurrentPage((prevPage) => prevPage - 1);
@@ -66,6 +93,15 @@ const DataTable: React.FC<DataTableProps> = ({
   return (
     <div className={styles.tableWrapper}>
       {caption && <caption>{caption}</caption>}
+      <div className={styles.searchContainer}>
+        <input
+          type="text"
+          placeholder="Search by name"
+          value={searchQuery}
+          onChange={handleSearchChange}
+          className={styles.searchInput}
+        />
+      </div>
       <table className={styles.table}>
         <thead>
           <tr>
@@ -84,12 +120,30 @@ const DataTable: React.FC<DataTableProps> = ({
         </thead>
         <tbody>
           {paginatedData.map((row, rowIndex) => (
-            <tr className={rowIndex % 2 === 0 ? styles.row : ""} key={rowIndex}>
-              {headers.map((header, cellIndex) => (
-                <td className={styles.colData} key={cellIndex}>
-                  {row[header]}
-                </td>
-              ))}
+            <tr key={rowIndex}>
+              {headers.map((header, cellIndex) => {
+                if (header === "Status") {
+                  const status = row[header];
+                  const badgeColor = getStatusBadgeColor(status);
+                  return (
+                    <td key={cellIndex}>
+                      <span className={`${styles.statusBadge} ${badgeColor}`}>
+                        {status}
+                      </span>
+                    </td>
+                  );
+                } else if (header === "Select") {
+                  return (
+                    <td className={styles.badge} key={cellIndex}>
+                      <span className={styles.select_button}>
+                        {row[header]}
+                      </span>
+                    </td>
+                  );
+                } else {
+                  return <td key={cellIndex}>{row[header]}</td>;
+                }
+              })}
             </tr>
           ))}
         </tbody>
