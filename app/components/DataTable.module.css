@@ -1,5 +1,7 @@
 .tableWrapper {
   font-family: Arial, sans-serif;
+  border: 1px solid black;
+  padding: 2em;
 }
 
 .table {
@@ -20,6 +22,8 @@
 
 .headerCellSortable {
   cursor: pointer;
+  text-align: inherit;
+  padding: 10px;
 }
 
 .headerCellSortable:hover {
@@ -29,6 +33,7 @@
 .dataCell {
   padding: 0.5rem;
   border-bottom: 1px solid lightgray;
+  background-color: aqua;
 }
 
 .paginationWrapper {
@@ -39,4 +44,14 @@
 
 .paginationButton {
   margin: 0 0.5rem;
+}
+.cell {
+  background-color: rgb(239, 239, 239);
+}
+.row {
+  padding-left: 10px;
+  background-color: rgb(218, 220, 222);
+}
+.colData {
+  padding-left: 10px;
 }

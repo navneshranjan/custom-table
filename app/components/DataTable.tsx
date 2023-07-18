@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import styles from "./DataTable.module.css";
 
@@ -7,12 +8,7 @@ interface DataTableProps {
   caption?: string;
   sorting?: boolean;
   pagination?: boolean;
-  data: DataRow[];
-}
-
-interface DataRow {
-  cells: string[];
-  data?: any; // Optional row data
+  data: Array<Record<string, any>>;
 }
 
 const DataTable: React.FC<DataTableProps> = ({
@@ -39,10 +35,12 @@ const DataTable: React.FC<DataTableProps> = ({
   };
 
   const sortedData = sortColumn !== null ? [...data] : data;
+  console.log("sorted datas", sortedData);
+
   if (sortColumn !== null) {
     sortedData.sort((a, b) => {
-      const valueA = a.cells[sortColumn];
-      const valueB = b.cells[sortColumn];
+      const valueA = a[headers[sortColumn]];
+      const valueB = b[headers[sortColumn]];
       if (sortAscending) {
         return valueA.localeCompare(valueB);
       } else {
@@ -54,7 +52,7 @@ const DataTable: React.FC<DataTableProps> = ({
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const paginatedData = pagination
-    ? sortedData?.slice(startIndex, endIndex)
+    ? sortedData.slice(startIndex, endIndex)
     : sortedData;
 
   const handlePreviousPage = () => {
@@ -71,7 +69,7 @@ const DataTable: React.FC<DataTableProps> = ({
       <table className={styles.table}>
         <thead>
           <tr>
-            {headers?.map((header, index) => (
+            {headers.map((header, index) => (
               <th
                 key={index}
                 className={
@@ -85,10 +83,12 @@ const DataTable: React.FC<DataTableProps> = ({
           </tr>
         </thead>
         <tbody>
-          {paginatedData?.map((row, index) => (
-            <tr key={index} data-row={JSON.stringify(row.data)}>
-              {row.cells?.map((cell, cellIndex) => (
-                <td key={cellIndex}>{cell}</td>
+          {paginatedData.map((row, rowIndex) => (
+            <tr className={rowIndex % 2 === 0 ? styles.row : ""} key={rowIndex}>
+              {headers.map((header, cellIndex) => (
+                <td className={styles.colData} key={cellIndex}>
+                  {row[header]}
+                </td>
               ))}
             </tr>
           ))}
@@ -105,7 +105,7 @@ const DataTable: React.FC<DataTableProps> = ({
           </button>
           <button
             className={styles.paginationButton}
-            disabled={endIndex >= sortedData?.length}
+            disabled={endIndex >= sortedData.length}
             onClick={handleNextPage}
           >
             Next
