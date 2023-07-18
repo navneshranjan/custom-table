@@ -92,15 +92,25 @@ const DataTable: React.FC<DataTableProps> = ({
 
   return (
     <div className={styles.tableWrapper}>
-      {caption && <caption>{caption}</caption>}
-      <div className={styles.searchContainer}>
-        <input
-          type="text"
-          placeholder="Search by name"
-          value={searchQuery}
-          onChange={handleSearchChange}
-          className={styles.searchInput}
-        />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: "20px 0 20px 0",
+        }}
+      >
+        {caption && <caption className={styles.caption}>{caption}</caption>}
+        <div className={styles.searchContainer}>
+          <input
+            type="text"
+            placeholder="Search by PurchaseId"
+            value={searchQuery}
+            onChange={handleSearchChange}
+            className={styles.searchInput}
+          />
+        </div>
       </div>
       <table className={styles.table}>
         <thead>
@@ -118,9 +128,9 @@ const DataTable: React.FC<DataTableProps> = ({
             ))}
           </tr>
         </thead>
-        <tbody>
+        <tbody className={styles.table_body}>
           {paginatedData.map((row, rowIndex) => (
-            <tr key={rowIndex}>
+            <tr className={rowIndex % 2 === 0 ? styles.row : ""} key={rowIndex}>
               {headers.map((header, cellIndex) => {
                 if (header === "Status") {
                   const status = row[header];
@@ -141,7 +151,11 @@ const DataTable: React.FC<DataTableProps> = ({
                     </td>
                   );
                 } else {
-                  return <td key={cellIndex}>{row[header]}</td>;
+                  return (
+                    <td className={styles.row_style} key={cellIndex}>
+                      {row[header]}
+                    </td>
+                  );
                 }
               })}
             </tr>

@@ -5,13 +5,14 @@
   padding: 20px;
 }
 
-.navbarNav {
+/* .navbarNav {
   list-style-type: none;
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
-}
+  width: 400px;
+} */
 
 .navItem {
   margin: 0 10px;
@@ -25,4 +26,63 @@
 
 .navLink:hover {
   color: #000;
+}
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+/* Navbar.module.css */
+
+.navbar {
+  background-color: #f5f5f5;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Divide into 3 equal parts */
+  align-items: center;
+}
+
+.navbarNav {
+  list-style-type: none;
+  margin: 0;
+  justify-content: space-between;
+
+  display: flex;
+
+  background-color: white;
+  padding: 20px 20px;
+  border-radius: 25px;
+  border-bottom: 2px solid rgb(197, 195, 195, 0.5);
+}
+
+.navItem {
+  margin: 0 10px;
+  text-decoration: none;
+  color: black;
+}
+.navItem:hover {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #d94407;
+}
+
+.navLink {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.navLink:hover {
+  color: #000;
+}
+.headerLast {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px 0px 50px;
+}
+.globalSearch {
+  padding: 10px 40px;
+  border: none;
 }
