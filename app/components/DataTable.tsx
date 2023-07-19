@@ -52,17 +52,20 @@ const DataTable: React.FC<DataTableProps> = ({
   };
 
   const sortedData = sortColumn !== null ? [...data] : data;
-  console.log("sorted datas", sortedData);
-
   if (sortColumn !== null) {
     sortedData.sort((a, b) => {
       const valueA = a[headers[sortColumn]];
       const valueB = b[headers[sortColumn]];
-      if (sortAscending) {
-        return valueA.localeCompare(valueB);
-      } else {
-        return valueB.localeCompare(valueA);
+
+      if (typeof valueA === "number" && typeof valueB === "number") {
+        return sortAscending ? valueA - valueB : valueB - valueA;
       }
+
+      const stringA = String(valueA);
+      const stringB = String(valueB);
+      return sortAscending
+        ? stringA.localeCompare(stringB)
+        : stringB.localeCompare(stringA);
     });
   }
   const filteredData = searchQuery
@@ -75,9 +78,7 @@ const DataTable: React.FC<DataTableProps> = ({
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  // const paginatedData = pagination
-  //   ? sortedData.slice(startIndex, endIndex)
-  //   : sortedData;
+
   const paginatedData = pagination
     ? filteredData.slice(startIndex, endIndex)
     : filteredData;

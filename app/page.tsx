@@ -3,180 +3,116 @@ import Header from "./components/Header";
 interface DataRow {
   [key: string]: any;
 }
+
+const headers: string[] = [
+  "Timestamp",
+  "PurchaseId",
+  "Mail",
+  "Name",
+  "Source",
+  "Status",
+  "Select",
+];
+
 const rows: DataRow[] = [
   {
-    Timestamp: "aohn",
-    PurchaseId: "123",
-    Mail: "cohn.doe@example.com",
-    Name: 1,
+    Timestamp: "2 minutes ago",
+    PurchaseId: 123,
+    Mail: "ahan.doe@example.com",
+    Name: "Ahan",
     Source: "Admin",
     Status: "Failed",
     Select: "Select",
   },
   {
-    Timestamp: "aohn",
-    PurchaseId: "11245",
-    Mail: "gohn.doe@example.com",
-    Name: 1,
+    Timestamp: "10 minutes ago",
+    PurchaseId: 22,
+    Mail: "bhumi.doe@example.com",
+    Name: "Bhumi",
     Source: "Admin",
     Status: "Pending",
     Select: "Select",
   },
   {
-    Timestamp: "bohn",
-    PurchaseId: "4356",
-    Mail: "lohn.doe@example.com",
-    Name: 1,
+    Timestamp: "15 minutes ago",
+    PurchaseId: 33,
+    Mail: "charu.doe@example.com",
+    Name: "Charu",
     Source: "Admin",
     Status: "Paid",
     Select: "Select",
   },
   {
-    Timestamp: "aohn",
-    PurchaseId: "998947",
-    Mail: "john.doe@example.com",
-    Name: 1,
+    Timestamp: "19 minutes ago",
+    PurchaseId: 44,
+    Mail: "dhobal.doe@example.com",
+    Name: "Dhobal",
     Source: "Admin",
     Status: "Pending",
     Select: "Select",
   },
   {
-    Timestamp: "aohn",
-    PurchaseId: "43245",
-    Mail: "john.doe@example.com",
-    Name: 1,
+    Timestamp: "2 hours ago",
+    PurchaseId: 66,
+    Mail: "emami.doe@example.com",
+    Name: "Emami",
     Source: "Admin",
     Status: "Pending",
     Select: "Select",
   },
   {
-    Timestamp: "aohn",
-    PurchaseId: "11111",
-    Mail: "john.doe@example.com",
-    Name: 1,
+    Timestamp: "10 hours ago",
+    PurchaseId: 5,
+    Mail: "farhan.doe@example.com",
+    Name: "Farhan",
     Source: "Admin",
     Status: "Pending",
     Select: "Select",
   },
   {
-    Timestamp: "aohn",
-    PurchaseId: "87464",
-    Mail: "john.doe@example.com",
-    Name: 1,
+    Timestamp: "1 day ago",
+    PurchaseId: 9,
+    Mail: "ganesh.doe@example.com",
+    Name: "Ganesh",
     Source: "Admin",
     Status: "Paid",
     Select: "Select",
   },
   {
-    Timestamp: "aohn",
-    PurchaseId: "34213",
-    Mail: "john.doe@example.com",
-    Name: 1,
+    Timestamp: "10 hours ago",
+    PurchaseId: 11,
+    Mail: "harry.doe@example.com",
+    Name: "Harry",
     Source: "Admin",
     Status: "Paid",
     Select: "Select",
   },
   {
-    Timestamp: "aohn",
-    PurchaseId: "22346",
-    Mail: "john.doe@example.com",
-    Name: 1,
+    Timestamp: "15 hours ago",
+    PurchaseId: 45,
+    Mail: "iklakh.doe@example.com",
+    Name: "Iklakh",
     Source: "Admin",
     Status: "Paid",
     Select: "Select",
   },
   {
-    Timestamp: "aohn",
-    PurchaseId: "4533455",
+    Timestamp: "20 hours ago",
+    PurchaseId: 32,
     Mail: "john.doe@example.com",
-    Name: 1,
+    Name: "John",
     Source: "Admin",
     Status: "Pending",
     Select: "Select",
   },
 ];
-const page: React.FC = () => {
-  //   {
-  //     cells: [
-  //       "11:20",
-  //       "200019",
-  //       "john.doe@example.com",
-  //       "John",
-  //       "",
-  //       "Pass",
-  //       "Select",
-  //     ],
-  //   },
-  //   {
-  //     cells: [
-  //       "11:20",
-  //       "200019",
-  //       "john.doe@example.com",
-  //       "John",
-  //       "",
-  //       "Pass",
-  //       "Select",
-  //     ],
-  //   },
-  //   {
-  //     cells: [
-  //       "11:20",
-  //       "200019",
-  //       "ohn.doe@example.com",
-  //       "John",
-  //       "",
-  //       "Pass",
-  //       "Select",
-  //     ],
-  //   },
-  //   {
-  //     cells: [
-  //       "11:20",
-  //       "200019",
-  //       "john.doe@example.com",
-  //       "John",
-  //       "",
-  //       "Pass",
-  //       "Select",
-  //     ],
-  //   },
-  //   {
-  //     cells: [
-  //       "11:20",
-  //       "200019",
-  //       "aohn.doe@example.com",
-  //       "John",
-  //       "",
-  //       "Pass",
-  //       "Select",
-  //     ],
-  //   },
-  //   {
-  //     cells: [
-  //       "11:20",
-  //       "200019",
-  //       "john.doe@example.com",
-  //       "John",
-  //       "",
-  //       "Pass",
-  //       "Select",
-  //     ],
-  //   },
-  // ];
 
+const page: React.FC = () => {
   return (
     <div>
       <Header />
       <DataTable
-        headers={[
-          "Timestamp",
-          "PurchaseId",
-          "Mail",
-          "Name",
-          "Source",
-          "Status",
-          "Select",
-        ]}
+        headers={headers}
         caption="Bookings"
         sorting
         pagination
